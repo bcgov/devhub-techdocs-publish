@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+# output the environment for debugging
+set
 
 ACTION=$1
 echo "Action: $ACTION"

@@ -1,3 +1,5 @@
+name: Test DevHub TechDocs Publish Action
+
 on: workflow_dispatch
 
 jobs:

@@ -5,7 +5,7 @@ ACTION=$1
 echo "Action: $ACTION"
 
 source /.virtualenvs/techdocs/bin/activate
-cd /src
+cd /github/workspace
 
 if [ $ACTION == "build" ]
 then

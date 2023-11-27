@@ -1,0 +1,7 @@
+site_name: "DevHub TechDocs Publishing Action"
+site_description: "A guide to using the DevHub TechDocs Publishing Action."
+repo_url: https://github.com/bcgov/devhub-techdocs-publish
+edit_uri: edit/main/docs/
+
+plugins:
+  - techdocs-core

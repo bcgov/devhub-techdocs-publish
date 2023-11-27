@@ -1,16 +1,13 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Build and Publish TechDocs'
+description: 'Build and Publish TechDocs to DevHub'
 inputs:
-    who-to-greet:  # id of input
-        description: 'Who to greet'
+    operation:  # id of input
+        description: 'The operation to perform - either "build" or "publish"'
         required: true
-        default: 'World'
-outputs:
-    time: # id of output
-        description: 'The time we greeted you'
+        default: 'build'
 runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
-        - ${{ inputs.who-to-greet }}
+        - ${{ inputs.operation }}

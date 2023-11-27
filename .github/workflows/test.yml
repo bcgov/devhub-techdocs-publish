@@ -3,17 +3,18 @@ name: Test DevHub TechDocs Publish Action
 on: workflow_dispatch
 
 jobs:
-    env:
-        TECHDOCS_S3_BUCKET_NAME: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
-        TECHDOCS_S3_DEV_ROOT_PATH: ${{ vars.TECHDOCS_S3_DEV_ROOT_PATH }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ secrets.TECHDOCS_AWS_REGION }}
-        AWS_ENDPOINT: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
-        ENTITY_NAMESPACE: ${{ vars.TECHDOCS_ENTITY_NAMESPACE }}
+
 
     test_techdocs_build_job:
         runs-on: ubuntu-latest
+        env:
+            TECHDOCS_S3_BUCKET_NAME: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
+            TECHDOCS_S3_DEV_ROOT_PATH: ${{ vars.TECHDOCS_S3_DEV_ROOT_PATH }}
+            AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
+            AWS_REGION: ${{ secrets.TECHDOCS_AWS_REGION }}
+            AWS_ENDPOINT: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
+            ENTITY_NAMESPACE: ${{ vars.TECHDOCS_ENTITY_NAMESPACE }}
         name: A job to build and publish techdocs content
         steps:
             # To use this repository's private action,

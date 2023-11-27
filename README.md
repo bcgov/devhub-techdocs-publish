@@ -1,61 +1,17 @@
-<!--- NOTE: This is a template for your project README. Edit the content according to the comments provided.--->
+# License
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
 
-# <application_license_badge>
-<!--- [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE) --->
-
-# <application_name>
-<!--- Description of the application. ---> 
+# DevHub TechDocs Publish Action
+ This repository contains a GitHub action that can be used in a GitHub Action workflow to build and publish TechDocs-compatible documentation to DevHub.
 
 ## Technical Details
-<!--- Technology Stack Used. ---> 
-
-## Third-Party Products/Libraries used and the licenses they are covered by
-<!--- product/library and path to the LICENSE --->
-<!--- Example: <library_name> - [![GitHub](<shield_icon_link>)](<path_to_library_LICENSE>) --->
+The action defined in this repository is a Docker-based action.
 
 ## Project Status
 - [x] Development
-- [ ] Production/Maintenance
-
-## Documentation
-<!--- Point to another readme or create a GitHub Pages (https://guides.github.com/features/pages/) --->
-
-## Security
-<!--- Authentication, Authorization, Policies, etc --->
-
-## Files in this repository
-<!--- Use Tree to generate the file structure, try `tree -I '<excluded_paths>' -d -L 3`--->
-
-## Getting Started
-<!--- setup env vars, secrets, instructions... --->
-
-## Deployment (Local Development)
-* Developer Workstation Requirements/Setup:
-<!--- instruction on Minishift/Docker/Other services.. --->
-
-* Application Specific Setup:
-<!--- instruction on setup local environment and dependencies.. --->
-
-
-## Deployment (OpenShift)
-<!--- Best to include details in a openshift/README.md --->
-
-## Getting Help or Reporting an Issue
-<!--- Example below, modify accordingly --->
-To report bugs/issues/feature requests, please file an [issue](../../issues).
-
-
-## How to Contribute
-<!--- Example below, modify accordingly --->
-If you would like to contribute, please see our [CONTRIBUTING](./CONTRIBUTING.md) guidelines.
-
-Please note that this project is released with a [Contributor Code of Conduct](./CODE_OF_CONDUCT.md). 
-By participating in this project you agree to abide by its terms.
-
 
 ## License
-<!--- Example below, modify accordingly --->
-    Copyright 2018 Province of British Columbia
+    Copyright 2023 Province of British Columbia
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

@@ -4,7 +4,7 @@
 ACTION=$1
 echo "Action: $ACTION"
 
-source ~/.virtualenvs/techdocs/bin/activate
+source /.virtualenvs/techdocs/bin/activate
 cd /src
 
 if [ $ACTION == "build" ]

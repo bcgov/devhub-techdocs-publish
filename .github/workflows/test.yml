@@ -25,7 +25,7 @@ jobs:
               uses: ./ # Uses an action in the root directory
               id: build
               with:
-                  operation: 'build'
+                  publish: 'true'
 #            -   name: Publish TechDocs
 #                uses: ./ # Uses an action in the root directory
 #                id: publish

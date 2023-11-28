@@ -6,13 +6,7 @@ jobs:
     test_techdocs_build_job:
         runs-on: ubuntu-latest
         env:
-            TECHDOCS_S3_BUCKET_NAME: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
-            TECHDOCS_S3_DEV_ROOT_PATH: ${{ vars.TECHDOCS_S3_DEV_ROOT_PATH }}
-            AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
-            AWS_REGION: ${{ secrets.TECHDOCS_AWS_REGION }}
-            AWS_ENDPOINT: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
-            ENTITY_NAMESPACE: ${{ vars.TECHDOCS_ENTITY_NAMESPACE }}
+
         name: A job to build and publish techdocs content
         steps:
             - name: Checkout
@@ -22,3 +16,10 @@ jobs:
               id: build_and_publish
               with:
                   publish: 'true'
+                  bucket_name: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
+                  s3_dev_root_path: ${{ vars.TECHDOCS_S3_DEV_ROOT_PATH }}
+                  s3_access_key_id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
+                  s3_secret_access_key:  ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
+                  s3_region: ${{ secrets.TECHDOCS_AWS_REGION }}
+                  s3_endpoint: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
+                  entity_namespace: ${{ vars.TECHDOCS_ENTITY_NAMESPACE }}

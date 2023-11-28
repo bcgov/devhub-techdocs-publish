@@ -14,6 +14,15 @@ CATALOG_FILE=$(find . -type f -name catalog-info.yaml -o -type f -name catalog-i
 ENTITY_NAME=$(cat "$CATALOG_FILE" | yq -r .metadata.name)
 ENTITY_KIND=$(cat "$CATALOG_FILE" | yq -r .kind)
 
+# map the local variables from the inputs provided by the Action
+ENTITY_NAMESPACE="$INPUT_ENTITY_NAMESPACE"
+TECHDOCS_S3_BUCKET_NAME="$INPUT_BUCKET_NAME"
+TECHDOCS_S3_DEV_ROOT_PATH="$INPUT_S3_DEV_ROOT_PATH"
+AWS_ENDPOINT="$INPUT_S3_ENDPOINT"
+AWS_ACCESS_KEY_ID: "$INPUT_S3_ACCESS_KEY_ID"
+AWS_SECRET_ACCESS_KEY: "$INPUT_S3_SECRET_ACCESS_KEY_ID"
+AWS_REGION: "$INPUT_S3_REGION"
+
 echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
 techdocs-cli build --verbose --no-docker
 

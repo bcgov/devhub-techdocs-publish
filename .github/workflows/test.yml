@@ -15,17 +15,10 @@ jobs:
             ENTITY_NAMESPACE: ${{ vars.TECHDOCS_ENTITY_NAMESPACE }}
         name: A job to build and publish techdocs content
         steps:
-            # To use this repository's private action,
-            # you must check out the repository
             - name: Checkout
               uses: actions/checkout@v4
             - name: Build TechDocs
-              uses: ./ # Uses an action in the root directory
-              id: build
+              uses: ./ # Uses the action in the root directory
+              id: build_and_publish
               with:
                   publish: 'true'
-#            -   name: Publish TechDocs
-#                uses: ./ # Uses an action in the root directory
-#                id: publish
-#                with:
-#                    operation: 'publish'

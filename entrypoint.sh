@@ -1,25 +1,23 @@
 #!/bin/bash -l
 
 # output the environment for debugging
-set
-
-# this value determines whether we build or publish @todo consolidate so we don't have to run two steps?
-OPERATION=$INPUT_OPERATION
+#set
 
 # activate the python virtualenv which is where we have our python dependencies installed
 source /.virtualenvs/techdocs/bin/activate
 
 cd /github/workspace
 
-# read the entity name and kind from the catalog-info file so we don't need to have these as inputs or vars.
-ENTITY_NAME=$(cat $(find . -name catalog-info.y*) | yq -r .metadata.name)
-ENTITY_KIND=$(cat $(find . -name catalog-info.y*) | yq -r .kind)
+CATALOG_FILE=$(find . -type f -name catalog-info.yaml -o -type f -name catalog-info.yml)
 
-if [ $OPERATION == "build" ]
-then
-	echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
-	techdocs-cli build --verbose --no-docker
-elif [ $OPERATION == "publish" ]
+# read the entity name and kind from the catalog-info file so we don't need to have these as inputs or vars.
+ENTITY_NAME=$(cat "$CATALOG_FILE" | yq -r .metadata.name)
+ENTITY_KIND=$(cat "$CATALOG_FILE" | yq -r .kind)
+
+echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
+techdocs-cli build --verbose --no-docker
+
+if [ "$INPUT_PUBLISH" == true ]
 then
 	echo "Publishing TechDocs to DevHub..."
 	echo "Bucket (secret): $TECHDOCS_S3_BUCKET_NAME"

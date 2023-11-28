@@ -2,12 +2,12 @@
 name: 'Build and Publish TechDocs'
 description: 'Build and Publish TechDocs to DevHub'
 inputs:
-    operation:  # id of input
-        description: 'The operation to perform - either "build" or "publish"'
+    publish:  # id of input
+        description: 'Flag to control whether generated documentation is published to shared bucket or not.'
         required: true
-        default: 'build'
+        default: 'false'
 runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
-        - ${{ inputs.operation }}
+        - ${{ inputs.publish }}

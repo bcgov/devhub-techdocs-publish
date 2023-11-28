@@ -3,8 +3,6 @@ name: Test DevHub TechDocs Publish Action
 on: workflow_dispatch
 
 jobs:
-
-
     test_techdocs_build_job:
         runs-on: ubuntu-latest
         env:

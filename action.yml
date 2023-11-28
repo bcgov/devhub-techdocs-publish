@@ -8,6 +8,6 @@ inputs:
         default: 'false'
 runs:
     using: 'docker'
-    image: 'ghcr.io/bcgov/devhub-techdocs-publish'
+    image: 'ghcr.io/bcgov/devhub-techdocs-publish:master'
     args:
         - ${{ inputs.publish }}

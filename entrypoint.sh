@@ -63,7 +63,7 @@ then
                 --awsBucketRootPath "$TECHDOCS_S3_DEV_ROOT_PATH"
 
 	# only publish to prod (root) folder of bucket if PRODUCTION input is true
-	if [ "$IMPUT_PRODUCTION" == "true" ]
+	if [ "$INPUT_PRODUCTION" == "true" ]
 	then
 		echo "Publishing TechDocs to PROD..."
 		techdocs-cli publish --publisher-type awsS3 \

@@ -1,12 +1,12 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "devhub-techdocs-publish"
-  description: "Github Action to publish TechDocs."
-  annotations:
-    github.com/project-slug: bcgov/devhub-techdocs-publish
-    backstage.io/techdocs-ref: dir:.
+    name: "devhub-techdocs-publish"
+    description: "Github Action to publish TechDocs."
+    annotations:
+        github.com/project-slug: bcgov/devhub-techdocs-publish
+        backstage.io/techdocs-ref: dir:.
 spec:
-  type: documentation
-  lifecycle: experimental
-  owner: "developer-experience"
+    type: documentation
+    lifecycle: experimental
+    owner: "developer-experience"

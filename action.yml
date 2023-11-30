@@ -6,13 +6,13 @@ inputs:
         description: 'Flag to control whether generated documentation is published to shared bucket or not.'
         required: true
         default: "false"
+    production:
+        description: 'Flag to control whether generated documentation is published to production folder in shared bucket.'
+        required: true
+        default: "false"
     bucket_name: #    TECHDOCS_S3_BUCKET_NAME: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
         description: 'Name of bucket to which documentation should be published.'
         required: false # not needed if publish = false
-    s3_dev_root_path: #    TECHDOCS_S3_DEV_ROOT_PATH: ${{ vars.TECHDOCS_S3_DEV_ROOT_PATH }}
-        description: "Subpath within bucket to which dev documentation should be published."
-        required: false # not needed if publish = false
-        default: "dev"
     s3_access_key_id: #    AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
         description: "Access key id to use to authenticate with S3 endpoint."
         required: false # not needed if publish = false
@@ -25,10 +25,7 @@ inputs:
     s3_endpoint: #    AWS_ENDPOINT: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
         description: "Address of S3 endpoint"
         required: false # not needed if publish = false
-    entity_namespace: #    ENTITY_NAMESPACE: ${{ vars.TECHDOCS_ENTITY_NAMESPACE }}
-        description: "Backstage catalog namespace into which techdocs entity should be published. Used as a path element in S3."
-        required: false # not needed if publish = false
-        default: "default"
+
 runs:
     using: 'docker'
     image: 'ghcr.io/bcgov/devhub-techdocs-publish:latest'

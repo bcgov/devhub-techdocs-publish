@@ -15,9 +15,9 @@ ENTITY_NAME=$(cat "$CATALOG_FILE" | yq -r .metadata.name)
 ENTITY_KIND=$(cat "$CATALOG_FILE" | yq -r .kind)
 
 # map the local variables from the inputs provided by the Action
-ENTITY_NAMESPACE="$INPUT_ENTITY_NAMESPACE"
+ENTITY_NAMESPACE="default"
 TECHDOCS_S3_BUCKET_NAME="$INPUT_BUCKET_NAME"
-TECHDOCS_S3_DEV_ROOT_PATH="$INPUT_S3_DEV_ROOT_PATH"
+TECHDOCS_S3_DEV_ROOT_PATH="dev"
 AWS_ENDPOINT="$INPUT_S3_ENDPOINT"
 export AWS_ACCESS_KEY_ID="$INPUT_S3_ACCESS_KEY_ID"
 export AWS_SECRET_ACCESS_KEY="$INPUT_S3_SECRET_ACCESS_KEY"
@@ -54,12 +54,26 @@ then
 		echo "AWS_SECRET_ACCESS_KEY is set!"
 	fi
 
+	echo "Publishing TechDocs to DEV..."
 	techdocs-cli publish --publisher-type awsS3 \
                 --storage-name "$TECHDOCS_S3_BUCKET_NAME" \
                 --entity "$ENTITY_PATH" \
                 --awsEndpoint "$AWS_ENDPOINT" \
                 --awsS3ForcePathStyle true \
                 --awsBucketRootPath "$TECHDOCS_S3_DEV_ROOT_PATH"
+
+	# only publish to prod (root) folder of bucket if PRODUCTION input is true
+	if [ "$IMPUT_PRODUCTION" == "true" ]
+	then
+		echo "Publishing TechDocs to PROD..."
+		techdocs-cli publish --publisher-type awsS3 \
+                    --storage-name "$TECHDOCS_S3_BUCKET_NAME" \
+                    --entity "$ENTITY_PATH" \
+                    --awsEndpoint "$AWS_ENDPOINT" \
+                    --awsS3ForcePathStyle true
+	else
+		echo "Not publishing TechDocs to PROD."
+	fi
 fi
 
 

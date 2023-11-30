@@ -22,7 +22,7 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v4
             -   name: Build TechDocs
-                uses: ./ # Uses the action in the root directory
+                uses: bcgov/devhub-techdocs-publish@v0.0.13
                 id: build_and_publish
                 with:
                     publish: 'true'

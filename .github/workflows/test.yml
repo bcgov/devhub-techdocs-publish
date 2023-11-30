@@ -8,15 +8,16 @@ jobs:
 
         name: A job to build and publish techdocs content
         steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Build TechDocs
-              uses: ./ # Uses the action in the root directory
-              id: build_and_publish
-              with:
-                  publish: 'true'
-                  bucket_name: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
-                  s3_access_key_id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
-                  s3_secret_access_key:  ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
-                  s3_region: ${{ secrets.TECHDOCS_AWS_REGION }}
-                  s3_endpoint: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
+            -   name: Checkout
+                uses: actions/checkout@v4
+            -   name: Build TechDocs
+                uses: ./ # Uses the action in the root directory
+                id: build_and_publish
+                with:
+                    publish: 'true'
+                    production: 'true'
+                    bucket_name: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
+                    s3_access_key_id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
+                    s3_secret_access_key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
+                    s3_region: ${{ secrets.TECHDOCS_AWS_REGION }}
+                    s3_endpoint: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}

@@ -28,6 +28,6 @@ inputs:
 
 runs:
     using: 'docker'
-    image: 'ghcr.io/bcgov/devhub-techdocs-publish:latest'
+    image: 'docker://ghcr.io/bcgov/devhub-techdocs-publish:stable'
     args:
         - ${{ inputs.publish }}

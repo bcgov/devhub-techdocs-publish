@@ -6,6 +6,7 @@ on:
         branches: [ main ]
         tags:
             - 'v*'
+            - 'stable'
         paths:
             - "Dockerfile"
             - "entrypoint.sh"

@@ -22,7 +22,7 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v4
             -   name: Build TechDocs
-                uses: bcgov/devhub-techdocs-publish@stable
+                uses: bcgov/devhub-techdocs-publish@v0.0.15
                 id: build_and_publish
                 with:
                     publish: 'true'

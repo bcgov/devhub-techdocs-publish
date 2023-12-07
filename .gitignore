@@ -35,3 +35,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Other ignores
+/site/*
+/.idea/*
+/commented-action.yml
+/test.sh

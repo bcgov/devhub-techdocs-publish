@@ -26,12 +26,12 @@ if [ $# -eq 0 ]
   then
     usage
 else
-	TAG=$1
+	export TAG=$1
 fi
 
 
 read -p "About to update action file to use new Docker tag '${TAG}'. Press any key to continue..."
-cat <<< "$(yq -oy '.runs.image |= envsubst' action.yml)" > action.yml
+yq -oy -i ".runs.image = \"docker://ghcr.io/bcgov/devhub-techdocs-publish:$TAG\"" action.yml
 
 
 read -p "About to commit new action file and create new git tag '${TAG}'. Press any key to continue..."

@@ -27,4 +27,4 @@ inputs:
     required: false # not needed if publish = false
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.0.17'
+  image: 'docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.0.18'

@@ -2,29 +2,29 @@
 name: 'Build and Publish TechDocs'
 description: 'Build and Publish TechDocs to DevHub'
 inputs:
-    publish: # id of input
-        description: 'Flag to control whether generated documentation is published to shared bucket or not.'
-        required: true
-        default: "false"
-    production:
-        description: 'Flag to control whether generated documentation is published to production folder in shared bucket.'
-        required: true
-        default: "false"
-    bucket_name: #    TECHDOCS_S3_BUCKET_NAME: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
-        description: 'Name of bucket to which documentation should be published.'
-        required: false # not needed if publish = false
-    s3_access_key_id: #    AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
-        description: "Access key id to use to authenticate with S3 endpoint."
-        required: false # not needed if publish = false
-    s3_secret_access_key: #    AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
-        description: "Secret access key id use to authenticate with S3 endpoint."
-        required: false # not needed if publish = false
-    s3_region: #    AWS_REGION: ${{ secrets.TECHDOCS_AWS_REGION }}
-        description: "Region value to use with S3 endpoint. This is for compatibility with AWS SDK, but may not be used by all S3 implementations."
-        required: false # not needed if publish = false
-    s3_endpoint: #    AWS_ENDPOINT: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
-        description: "Address of S3 endpoint"
-        required: false # not needed if publish = false
+  publish: # id of input
+    description: 'Flag to control whether generated documentation is published to shared bucket or not.'
+    required: true
+    default: "false"
+  production:
+    description: 'Flag to control whether generated documentation is published to production folder in shared bucket.'
+    required: true
+    default: "false"
+  bucket_name: #    TECHDOCS_S3_BUCKET_NAME: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
+    description: 'Name of bucket to which documentation should be published.'
+    required: false # not needed if publish = false
+  s3_access_key_id: #    AWS_ACCESS_KEY_ID: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
+    description: "Access key id to use to authenticate with S3 endpoint."
+    required: false # not needed if publish = false
+  s3_secret_access_key: #    AWS_SECRET_ACCESS_KEY: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
+    description: "Secret access key id use to authenticate with S3 endpoint."
+    required: false # not needed if publish = false
+  s3_region: #    AWS_REGION: ${{ secrets.TECHDOCS_AWS_REGION }}
+    description: "Region value to use with S3 endpoint. This is for compatibility with AWS SDK, but may not be used by all S3 implementations."
+    required: false # not needed if publish = false
+  s3_endpoint: #    AWS_ENDPOINT: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
+    description: "Address of S3 endpoint"
+    required: false # not needed if publish = false
 runs:
-    using: 'docker'
-    image: 'docker://ghcr.io/bcgov/devhub-techdocs-publish:$TAG'
+  using: 'docker'
+  image: 'docker://ghcr.io/bcgov/devhub-techdocs-publish:$TAG'

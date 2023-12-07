@@ -30,9 +30,11 @@ else
 fi
 
 
-read -p "Updating action file to use new Docker tag '${TAG}'. Press any key to continue..."
+read -p "About to update action file to use new Docker tag '${TAG}'. Press any key to continue..."
 cat <<< "$(yq -oy '.runs.image |= envsubst' action.yml)" > action.yml
 
+
+read -p "About to commit new action file and create new git tag '${TAG}'. Press any key to continue..."
 git commit -a -m "Updated action.yml to use a new Docker image with tag '${TAG}'."
 #git push
 

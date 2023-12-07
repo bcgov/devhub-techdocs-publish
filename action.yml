@@ -2,7 +2,7 @@
 name: 'Build and Publish TechDocs'
 description: 'Build and Publish TechDocs to DevHub'
 inputs:
-    publish:  # id of input
+    publish: # id of input
         description: 'Flag to control whether generated documentation is published to shared bucket or not.'
         required: true
         default: "false"
@@ -25,7 +25,6 @@ inputs:
     s3_endpoint: #    AWS_ENDPOINT: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
         description: "Address of S3 endpoint"
         required: false # not needed if publish = false
-
 runs:
     using: 'docker'
-    image: 'docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.0.15'
+    image: 'docker://ghcr.io/bcgov/devhub-techdocs-publish:$TAG'

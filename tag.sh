@@ -31,7 +31,7 @@ fi
 
 
 read -p "Updating action file to use new Docker tag '${TAG}'. Press any key to continue..."
-cat <<< "$(yq -y '.runs.image = "docker://ghcr.io/bcgov/devhub-techdocs-publish:$TAG"' action.yml)" > action.yml
+cat <<< "$(yq -oy '.runs.image = "docker://ghcr.io/bcgov/devhub-techdocs-publish:$TAG"' action.yml)" > action.yml
 
 #git commit -m "Updated action.yml to use a new Docker image with tag '${TAG}'."
 #git push

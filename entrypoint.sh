@@ -10,6 +10,12 @@ cd /github/workspace
 
 CATALOG_FILE=$(find . -type f -name catalog-info.yaml -o -type f -name catalog-info.yml)
 
+if [ -z "${CATALOG_FILE}" ]
+then
+	echo "No catalog-info file found in repo. Cannot continue."
+	exit 1
+fi
+
 # read the entity name and kind from the catalog-info file so we don't need to have these as inputs or vars.
 ENTITY_NAME=$(cat "$CATALOG_FILE" | yq -r .metadata.name)
 ENTITY_KIND=$(cat "$CATALOG_FILE" | yq -r .kind)

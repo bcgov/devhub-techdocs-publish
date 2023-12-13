@@ -10,8 +10,10 @@ RUN \
 /.virtualenvs/techdocs/bin/pip install markdown-inline-mermaid==1.0.3 && \
 /.virtualenvs/techdocs/bin/pip install mkdocs-ezlinks-plugin==0.1.14 && \
 /.virtualenvs/techdocs/bin/pip install mkpatcher==1.0.2 && \
-npm install -g @techdocs/cli@1.7.0
+npm install -g @techdocs/cli@1.7.0 && \
+mkdir /mkpatcher_scripts
 
 COPY entrypoint.sh /entrypoint.sh
+COPY mkpatcher_scripts /mkpatcher_scripts
 
 ENTRYPOINT ["/entrypoint.sh"]

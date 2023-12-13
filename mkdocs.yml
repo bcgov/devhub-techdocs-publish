@@ -1,7 +1,12 @@
 site_name: "DevHub TechDocs Publishing Action"
 site_description: "A guide to using the DevHub TechDocs Publishing Action."
 repo_url: https://github.com/bcgov/devhub-techdocs-publish
-edit_uri: edit/main/docs/
-
 plugins:
-  - techdocs-core
+    - techdocs-core
+    - ezlinks
+
+markdown_extensions:
+    - markdown_inline_mermaid
+    - md_in_html
+    -   mkpatcher:
+            location: patcher.py

@@ -1,12 +1,22 @@
 #!/bin/bash -l
 
-# output the environment for debugging
-#set
+echo "Input parameters: $*"
+
+if [[ $* =~ "publish" ]] || [ "$INPUT_PUBLISH" == "true" ]; then
+	echo "Content will be published after it is generated."
+	PUBLISH=true
+fi
+
+if [[ $* =~ "preview" ]]; then
+	echo "Previewer will be started for content after it is generated."
+	PREVIEW=true
+fi
 
 # activate the python virtualenv which is where we have our python dependencies installed
 source /.virtualenvs/techdocs/bin/activate
 
 cd /github/workspace
+cp /mkpatcher_scripts/* /github/workspace
 
 CATALOG_FILE=$(find . -type f -name catalog-info.yaml -o -type f -name catalog-info.yml)
 
@@ -34,7 +44,18 @@ ENTITY_PATH="$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME"
 echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
 techdocs-cli build --verbose --no-docker
 
-if [ "$INPUT_PUBLISH" == "true" ]
+if [ $? -eq 0 ]; then
+	echo "Successfully build content. Continuing."
+else
+	echo "Failed to build content. Abandoning. Please fix errors and try again."
+	exit 1
+fi
+
+if [ $PREVIEW ]; then
+	techdocs-cli serve --verbose --no-docker
+fi
+
+if [ $PUBLISH ]
 then
 	echo "Publishing TechDocs to DevHub..."
 
@@ -47,7 +68,7 @@ then
     if [ -z "$AWS_ACCESS_KEY_ID" ]
     then
     	echo "AWS_ACCESS_KEY_ID is NOT set!"
-
+		exit 1
 	else
 		echo "AWS_ACCESS_KEY_ID is set!"
 	fi
@@ -55,6 +76,7 @@ then
 	if [ -z "$AWS_SECRET_ACCESS_KEY" ]
 	then
 		echo "AWS_SECRET_ACCESS_KEY is NOT set!"
+		exit 1
 
 	else
 		echo "AWS_SECRET_ACCESS_KEY is set!"

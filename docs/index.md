@@ -19,15 +19,17 @@ on:
         branches: [ main ]
         paths:
             - "mkdocs.yml"
+            - "catalog-info.yml"
             - "docs/*"
     pull_request:
         branches: [ main ]
         paths:
             - "mkdocs.yml"
+            - "catalog-info.yml"
             - "docs/*"
 
 jobs:
-    test_techdocs_build_job:
+    techdocs_build_job:
         runs-on: ubuntu-latest
 
         name: A job to build and publish techdocs content
@@ -39,12 +41,12 @@ jobs:
                 id: build_and_publish
                 with:
                     publish: 'true'
-                    production:  ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} # You may also wish change the logic in the `production` flag. This example only pushes to the prod DevHub backedn when the changes that triggered the job are in `main` branch 
+                    production:  ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }} # You may also wish change the logic in the `production` flag. This example only pushes to the prod DevHub backend when the changes that triggered the job are in `main` branch 
                     bucket_name: ${{ secrets.TECHDOCS_S3_BUCKET_NAME }}
                     s3_access_key_id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
                     s3_secret_access_key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
                     s3_region: ${{ secrets.TECHDOCS_AWS_REGION }}
-                    s3_endpoint: ${{ secrets.TECHDOCS_AWS_ENDPOINT }
+                    s3_endpoint: ${{ secrets.TECHDOCS_AWS_ENDPOINT }}
 ```
 
 ## How to use the Docker image to preview content locally

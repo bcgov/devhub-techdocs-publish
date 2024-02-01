@@ -10,6 +10,7 @@ RUN \
 /.virtualenvs/techdocs/bin/pip install markdown-inline-mermaid==1.0.3 && \
 /.virtualenvs/techdocs/bin/pip install mkdocs-ezlinks-plugin==0.1.14 && \
 /.virtualenvs/techdocs/bin/pip install mkpatcher==1.0.2 && \
+npm install -g @mermaid-js/mermaid-cli && \
 npm install -g @techdocs/cli@1.7.0 && \
 mkdir /mkpatcher_scripts
 

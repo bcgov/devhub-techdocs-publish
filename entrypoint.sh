@@ -45,7 +45,7 @@ echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND
 techdocs-cli build --verbose --no-docker
 
 if [ $? -eq 0 ]; then
-	echo "Successfully build content. Continuing."
+	echo "Successfully built content. Continuing."
 else
 	echo "Failed to build content. Abandoning. Please fix errors and try again."
 	exit 1

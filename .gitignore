@@ -40,3 +40,4 @@ Thumbs.db
 /site/*
 /.idea/*
 /test.sh
+__pycache__

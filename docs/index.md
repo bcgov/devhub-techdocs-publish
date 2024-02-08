@@ -69,4 +69,11 @@ The above commands will:
 - generate HTML from your markdown documents using a standard set of plugins/extensions for DevHub compatibility
 - start a "preview" web server on [http://localhost:3000](http://localhost:3000) for you to review your content. 
 
+## How it works
+
+```mermaid
+graph TD
+A[Client] --> B[Load Balancer]
+```
+
 

@@ -1,7 +1,13 @@
 FROM node:20-bookworm
 
 # update image and create a virtualenv after installing required, missing python dependencies
-RUN  apt-get update &&  apt-get install python3-pip python3.11-venv jq -y && python3 -m venv /.virtualenvs/techdocs
+RUN apt-get update \
+	&& apt-get install -y wget gnupg \
+	&& wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+	&& sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+	&& apt-get update \
+    && apt-get install python3-pip python3.11-venv jq chromium --no-install-recommends -y \
+    && python3 -m venv /.virtualenvs/techdocs
 
 # install techdocs dependencies into the virtualenv created above then install node dependency
 RUN \
@@ -11,7 +17,7 @@ RUN \
 /.virtualenvs/techdocs/bin/pip install mkdocs-ezlinks-plugin==0.1.14 && \
 /.virtualenvs/techdocs/bin/pip install mkpatcher==1.0.2 && \
 npm install -g @mermaid-js/mermaid-cli && \
-npm install -g @techdocs/cli@1.7.0 && \
+npm install -g @techdocs/cli@1.8.1 && \
 mkdir /mkpatcher_scripts
 
 COPY entrypoint.sh /entrypoint.sh

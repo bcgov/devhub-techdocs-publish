@@ -6,7 +6,6 @@ plugins:
     - ezlinks
 
 markdown_extensions:
-    - markdown_inline_mermaid
     - md_in_html
     -   mkpatcher:
             location: patcher.py

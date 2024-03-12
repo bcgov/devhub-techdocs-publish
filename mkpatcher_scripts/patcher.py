@@ -4,14 +4,18 @@ import re
 
 def patch(lines):
 	new_lines = []
+	in_code_block = False
 	for index, line in enumerate(lines):
 		# if we don't do any twiddling, carry the line through as-is
 		new_line = line
 
 		# match lines starting with a dash or bullet, with leading white space or not
 		bullet = re.match(r"^[\s]*[-\*]{1}\s", new_line)
+		code_block = re.match(r"^[\s]*(?!`{4})`{3}", new_line)
+		if code_block:
+			in_code_block = not(in_code_block)
 
-		if bullet:
+		if bullet and not(in_code_block):
 			logging.debug(f"Found line starting with bullet: '{new_line}'")
 
 			# match lines with leading white space

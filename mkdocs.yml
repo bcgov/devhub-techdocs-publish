@@ -4,9 +4,8 @@ repo_url: https://github.com/bcgov/devhub-techdocs-publish
 plugins:
     - techdocs-core
     - ezlinks
-
+    - git-revision-date-localized
 markdown_extensions:
-    - markdown_inline_mermaid
     - md_in_html
     -   mkpatcher:
             location: patcher.py

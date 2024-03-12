@@ -41,3 +41,4 @@ Thumbs.db
 /.idea/*
 /test.sh
 __pycache__
+.vscode/

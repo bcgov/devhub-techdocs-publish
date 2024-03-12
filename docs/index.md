@@ -53,13 +53,20 @@ jobs:
 
 If you have a local folder or repo containing markdown content for which you wish to view a "preview" to get an idea of what it would look like in DevHub, you can use the Docker image, as shown below.
 
+Change to your local clone of your documentation repo:
+
 ```shell
 cd <your folder or repo with mkdocs.yml and docs folder>
-# docker / colima
+```
+
+If you're using `docker` or `colima`, pull the image and use it to preview your content as follows:
+```shell
 docker pull ghcr.io/bcgov/devhub-techdocs-publish:v0.0.19
 docker run -it -p 3000:3000 -v $(pwd):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
+```
 
-# podman
+If you're using `podman`, pull the image and use it to preview your content as follows:
+```
 podman pull ghcr.io/bcgov/devhub-techdocs-publish:v0.0.19
 podman run -it -p 3000:3000 -v $(pwd):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
 ```
@@ -67,13 +74,5 @@ podman run -it -p 3000:3000 -v $(pwd):/github/workspace ghcr.io/bcgov/devhub-tec
 The above commands will:
 
 - generate HTML from your markdown documents using a standard set of plugins/extensions for DevHub compatibility
-- start a "preview" web server on [http://localhost:3000](http://localhost:3000) for you to review your content. 
-
-## How it works
-
-```mermaid
-graph TD
-A[Client] --> B[Load Balancer]
-```
-
+- start a "preview" web server on [http://localhost:3000](http://localhost:3000) for you to review your content.
 

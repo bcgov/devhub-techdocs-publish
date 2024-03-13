@@ -23,6 +23,7 @@ jobs:
                 uses: actions/checkout@v4
                 with:
                     fetch-depth: 0
+                    set-safe-directory: 'true'
             -   name: Build TechDocs
                 uses: bcgov/devhub-techdocs-publish@stable
                 id: build_and_publish

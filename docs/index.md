@@ -36,8 +36,10 @@ jobs:
         steps:
             -   name: Checkout
                 uses: actions/checkout@v4
+				with:
+					fetch-depth: 0
             -   name: Build TechDocs
-                uses: bcgov/devhub-techdocs-publish@stable  # `stable` will also get the most stable, working version of the Action. If you are asked or wish to use a specific version, you can update this value as needed.  
+                uses: bcgov/devhub-techdocs-publish@stable  # `stable` will always get the most stable, working version of the Action. If you are asked or wish to use a specific version, you can update this value as needed.  Note `stable` in this case is a GitHub branch *not* a Docker tag.
                 id: build_and_publish
                 with:
                     publish: 'true'
@@ -53,21 +55,23 @@ jobs:
 
 If you have a local folder or repo containing markdown content for which you wish to view a "preview" to get an idea of what it would look like in DevHub, you can use the Docker image, as shown below.
 
-Change to your local clone of your documentation repo:
+- Change to your local clone of your documentation repo:
 
 ```shell
 cd <your folder or repo with mkdocs.yml and docs folder>
 ```
 
-If you're using `docker` or `colima`, pull the image and use it to preview your content as follows:
+- If you're using `docker` or `colima`, pull the image and use it to preview your content as follows:
+
 ```shell
-docker pull ghcr.io/bcgov/devhub-techdocs-publish:v0.0.19
+docker pull ghcr.io/bcgov/devhub-techdocs-publish
 docker run -it -p 3000:3000 -v $(pwd):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
 ```
 
-If you're using `podman`, pull the image and use it to preview your content as follows:
-```
-podman pull ghcr.io/bcgov/devhub-techdocs-publish:v0.0.19
+- If you're using `podman`, pull the image and use it to preview your content as follows:
+
+```shell
+podman pull ghcr.io/bcgov/devhub-techdocs-publish
 podman run -it -p 3000:3000 -v $(pwd):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
 ```
 

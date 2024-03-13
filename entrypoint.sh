@@ -41,6 +41,9 @@ export AWS_REGION="$INPUT_S3_REGION"
 
 ENTITY_PATH="$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME"
 
+echo "Adjusting ownership of repo contents so git metadata can be read by 'git-revision-date-localized' mkdocs plugin..."
+chown -R root /github/workspace
+
 echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
 techdocs-cli build --verbose --no-docker
 

@@ -41,21 +41,20 @@ export AWS_REGION="$INPUT_S3_REGION"
 
 ENTITY_PATH="$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME"
 
-echo "Setting git configuration..."
 
 echo "Current user is '$(whoami)'"
 echo "Showing ownership of files and directories..."
 ls -la
 
-git config --global --add safe.directory /github/workspace/docs
+echo "Adjusting ownership..."
+chown -R root /github/workspace
 
-# when running within an Action this won't exist, but it may when testing locally
-if [ ! -d "./site" ]; then
-	echo "Creating ./site directory."
-	mkdir site
-fi
+echo "Showing updated ownership of files and directories..."
+ls -la
 
-git config --global --add safe.directory /github/workspace/site
+#echo "Setting git configuration..."
+#git config --global --add safe.directory /github/workspace/docs
+#git config --global --add safe.directory /github/workspace/site
 
 echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
 techdocs-cli build --verbose --no-docker

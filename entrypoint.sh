@@ -42,6 +42,11 @@ export AWS_REGION="$INPUT_S3_REGION"
 ENTITY_PATH="$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME"
 
 echo "Setting git configuration..."
+
+echo "Current user is '$(whoami)'"
+echo "Showing ownership of files and directories..."
+ls -la
+
 git config --global --add safe.directory /github/workspace/docs
 
 # when running within an Action this won't exist, but it may when testing locally

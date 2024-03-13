@@ -41,6 +41,17 @@ export AWS_REGION="$INPUT_S3_REGION"
 
 ENTITY_PATH="$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME"
 
+echo "Setting git configuration..."
+git config --global --add safe.directory ./docs
+
+# when running within an Action this won't exist, but it may when testing locally
+if [ ! -d "./site" ]; then
+	echo "Creating ./site directory."
+	mkdir site
+fi
+
+git config --global --add safe.directory ./site
+
 echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
 techdocs-cli build --verbose --no-docker
 

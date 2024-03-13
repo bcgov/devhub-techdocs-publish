@@ -26,4 +26,4 @@ inputs:
     required: false
 runs:
   using: docker
-  image: docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.0.21
+  image: docker://ghcr.io/bcgov/devhub-techdocs-publish:main

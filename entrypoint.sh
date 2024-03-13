@@ -41,20 +41,8 @@ export AWS_REGION="$INPUT_S3_REGION"
 
 ENTITY_PATH="$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME"
 
-
-echo "Current user is '$(whoami)'"
-echo "Showing ownership of files and directories..."
-ls -la
-
-echo "Adjusting ownership..."
+echo "Adjusting ownership of repo contents so git metadata can be read by 'git-revision-date-localized' mkdocs plugin..."
 chown -R root /github/workspace
-
-echo "Showing updated ownership of files and directories..."
-ls -la
-
-#echo "Setting git configuration..."
-#git config --global --add safe.directory /github/workspace/docs
-#git config --global --add safe.directory /github/workspace/site
 
 echo "Building TechDocs from Markdown for entity '$ENTITY_NAMESPACE/$ENTITY_KIND/$ENTITY_NAME'"
 techdocs-cli build --verbose --no-docker

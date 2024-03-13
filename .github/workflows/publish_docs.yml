@@ -6,6 +6,7 @@ on:
         branches: [ main ]
         paths:
             - "mkdocs.yml"
+            - catalog-info.yml
             - "docs/*"
     pull_request:
         branches: [ main ]
@@ -24,7 +25,7 @@ jobs:
                 with:
                     fetch-depth: 0
             -   name: Build TechDocs
-                uses: bcgov/devhub-techdocs-publish@stable
+                uses: bcgov/devhub-techdocs-publish@main
                 id: build_and_publish
                 with:
                     publish: 'true'

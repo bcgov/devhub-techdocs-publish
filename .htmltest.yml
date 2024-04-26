@@ -1,0 +1,4 @@
+CheckLinks: false
+IgnoreDirectoryMissingTrailingSlash: true
+IgnoreURLs:
+    - "localhost"

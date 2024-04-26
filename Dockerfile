@@ -10,6 +10,12 @@ RUN \
 npm install -g @techdocs/cli@1.8.1 && \
 mkdir /mkpatcher_scripts
 
+# install `htmltest` for testing links and other things within generated HTML
+RUN \
+curl https://htmltest.wjdp.uk | bash && \
+mv ./bin/htmltest /htmltest
+
+COPY .htmltest.yml /.htmltest.yml
 COPY entrypoint.sh /entrypoint.sh
 COPY mkpatcher_scripts /mkpatcher_scripts
 

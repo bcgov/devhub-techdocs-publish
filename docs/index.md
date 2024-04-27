@@ -85,6 +85,54 @@ The above commands will:
 
 The GitHub Action has a built-in capability to check links in HTML pages that are generated from source Markdown files. This capability uses a tool called [`htmltest`](https://github.com/wjdp/htmltest). 
 
+If `htmltest` detects errors during its run against gneerated HTML files, they will show up in the action log as shown below. 
+
+```
+Successfully built content. Continuing.
+Using default htmltest configuration file.
+htmltest started at 12:46:44 on site
+========================================================================
+content-partner-guide/index.html
+  alt text empty --- content-partner-guide/index.html --> ../images/devhub_appearance.png
+rocketchat/steps-to-join-rocketchat/index.html
+  hash does not exist --- rocketchat/steps-to-join-rocketchat/index.html --> #join-rocketchat-with-github-acount
+use-github-in-bcgov/github-enterprise-user-licenses-bc-government/index.html
+  Non-OK status: 404 --- use-github-in-bcgov/github-enterprise-user-licenses-bc-government/index.html --> https://github.com/bcgoc
+use-github-in-bcgov/bc-government-organizations-in-github/index.html
+  hash does not exist --- use-github-in-bcgov/bc-government-organizations-in-github/index.html --> #ministry-specific-private-organizations-in-github-enterprise
+welcome-to-bc-gov/index.html
+  target does not exist --- welcome-to-bc-gov/index.html --> /docs/
+  target does not exist --- welcome-to-bc-gov/index.html --> /docs/default/component/platform-developer-docs/docs/openshift-projects-and-access/grant-user-access-openshift/
+  target does not exist --- welcome-to-bc-gov/index.html --> /docs/default/component/platform-developer-docs/docs/training-and-learning/training-from-the-platform-services-team/
+  target does not exist --- welcome-to-bc-gov/index.html --> /docs/default/component/public-cloud-techdocs/provision-a-project-set/#account-access
+  target does not exist --- welcome-to-bc-gov/index.html --> /docs/default/component/platform-developer-docs/#training-and-learning
+content-syntax-guide/index.html
+  target does not exist --- content-syntax-guide/index.html --> /docs/default/component/mobile-developer-guide/meetups/
+  target does not exist --- content-syntax-guide/index.html --> ../../mobile-developer-guide/meetups/
+  target does not exist --- content-syntax-guide/index.html --> ../../mobile-developer-guide/meetups/
+accessibility-resources/index.html
+  Non-OK status: 503 --- accessibility-resources/index.html --> https://www.w3.org/WAI/eval/report-tool/evaluation/define-scope
+  Non-OK status: 503 --- accessibility-resources/index.html --> https://www.w3.org/TR/WCAG22/
+========================================================================
+✘✘✘ failed in 46.230009005s
+14 errors in 21 documents
+/entrypoint.sh: line 80: htmltest: command not found
+Link validation with  failed. The workflow will continue because strict validation is not enabled. Please refer to documentation at https://github.com/bcgov/devhub-techdocs-publish/blob/main/docs/index.md and https://github.com/wjdp/htmltest for assistance fixing errors or configuring htmltest.
+```
+
+Ideally, teams will use this output to remedy the errors so none show up and the html status is "green" and output is as shown below.
+
+```
+Successfully built content. Continuing.
+Using provided htmltest configuration file: './.htmltest.yml'.
+htmltest started at 12:57:04 on site
+========================================================================
+✔✔✔ passed in 3.060296912s
+tested 2 documents
+```
+
+### Enabling strict validation (failing build when there are link errors)
+
 How link validation errors impact the workflow run is controlled with the optional action parameter `strict_validation`. With the example workflow file above, the `strict_validation` isn't present, and `htmltest` will validate links, but the workflow run will not fail if link validation errors are encountered.  Setting `strict_validation` to `true` will cause the run to fail if any errors are encountered.  A snippet from a workflow file with this value set is shown below.
 
 ```yaml

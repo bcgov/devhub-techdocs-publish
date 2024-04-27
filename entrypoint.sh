@@ -54,6 +54,33 @@ else
 	exit 1
 fi
 
+
+HTMLTEST_CONFIG_FILE=$(find . -type f -name .htmltest.yml -o -type f -name .htmltest.yaml)
+
+if [ -f "${HTMLTEST_CONFIG_FILE}" ]; then
+	echo "Using provided htmltest configuration file: '${HTMLTEST_CONFIG_FILE}'."
+else
+	echo "Using default htmltest configuration file."
+	HTMLTEST_CONFIG_FILE="/.htmltest.yml"
+fi
+
+/htmltest -c $HTMLTEST_CONFIG_FILE ./site
+
+if [ $? -eq 0 ]; then
+	HTMLTEST_SUCCEEDED="true"
+else
+	HTMLTEST_SUCCEEDED="false"
+fi
+
+if [ "$HTMLTEST_SUCCEEDED" == "false" ]; then
+	if [ "${INPUT_STRICT_VALIDATION}" == "true" ]; then
+		echo "Link validation with `htmltest` failed. The workflow will be terminated because strict validation is enabled. Please fix errors and try again. Please refer to documentation at https://github.com/bcgov/devhub-techdocs-publish/blob/main/docs/index.md and https://github.com/wjdp/htmltest for assistance fixing errors or configuring htmltest."
+		exit 1
+	else
+		echo "Link validation with `htmltest` failed. The workflow will continue because strict validation is not enabled. Please refer to documentation at https://github.com/bcgov/devhub-techdocs-publish/blob/main/docs/index.md and https://github.com/wjdp/htmltest for assistance fixing errors or configuring htmltest."
+	fi
+fi
+
 if [ $PREVIEW ]; then
 	techdocs-cli serve --verbose --no-docker
 fi

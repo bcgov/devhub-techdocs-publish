@@ -1,0 +1,6 @@
+mkdocs-techdocs-core==1.*
+yq==3.*
+mkdocs-ezlinks-plugin==0.1.14
+mkpatcher==1.*
+mkdocs-git-revision-date-localized-plugin==1.*
+mkdocs-macros-plugin==1.*

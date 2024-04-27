@@ -1,4 +1,6 @@
 **/*
 !entrypoint.sh
 !mkpatcher_scripts
+!requirements.txt
+!.htmltest.yml
 /site

@@ -1,6 +1,10 @@
 name: Build and Publish TechDocs
 description: Build and Publish TechDocs to DevHub
 inputs:
+  strict_validation:
+    description: Flag to control whether link validation failures will cause workflow to exit.
+    required: false
+    default: 'false'
   publish:
     description: Flag to control whether generated documentation is published to shared bucket or not.
     required: true
@@ -26,4 +30,4 @@ inputs:
     required: false
 runs:
   using: docker
-  image: docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.1.0
+  image: docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.2.0

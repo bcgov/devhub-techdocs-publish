@@ -1,6 +1,6 @@
 # DevHub TechDocs Publish GitHub Action
 
-This is the documentation for the DevHub TechDocs Publisher GitHub Action. The DevHub TechDocs Publisher GitHub Action makes is easy for DevHub Content Partners to implement a CI job that will publish their content to DevHub.
+This is the documentation for the DevHub TechDocs Publisher GitHub Action. The DevHub TechDocs Publisher GitHub Action makes is easy for DevHub Content Partners to implement a CI job that will publish their content to [DevHub](https://developer.gov.bc.ca).
 
 > Note: The instructions below presume you are part of a B.C. government development team and have been in touch with the B.C. government [Developer Experience Team](mailto:developer.experience@gov.bc.ca) for orientation to DevHub. The workflow below will not work until the Developer Experience has given you access to certain protected values that it uses (those in `${{ secrets... }` below). You *may* be able to make use of the action to publish to other Backstage environments, but these instructions won't cover that scenario. 
 
@@ -77,6 +77,43 @@ podman run -it -p 3000:3000 -v $(pwd):/github/workspace ghcr.io/bcgov/devhub-tec
 
 The above commands will:
 
-- generate HTML from your markdown documents using a standard set of plugins/extensions for DevHub compatibility
+- generate HTML from your Markdown documents using a standard set of plugins/extensions for DevHub compatibility
+- validate the links in the generated HTML files using [`htmltest`](#link-validation-using-htmltest)
 - start a "preview" web server on [http://localhost:3000](http://localhost:3000) for you to review your content.
+
+## Link validation using `htmltest`
+
+The GitHub Action has a built-in capability to check links in HTML pages that are generated from source Markdown files. This capability uses a tool called [`htmltest`](https://github.com/wjdp/htmltest). 
+
+How link validation errors impact the workflow run is controlled with the optional action parameter `strict_validation`. With the example workflow file above, the `strict_validation` isn't present, and `htmltest` will validate links, but the workflow run will not fail if link validation errors are encountered.  Setting `strict_validation` to `true` will cause the run to fail if any errors are encountered.  A snippet from a workflow file with this value set is shown below.
+
+```yaml
+...
+	id: build_and_publish
+	with:
+		strict_validation: 'true'
+		publish: 'false'
+...
+```
+
+### Configuring `htmltest`
+
+The fine-grained behaviour of `htmltest` is controlled by a configuration file called `.htmltest.yml`. The action will look for an `.htmltest.yml` file in the root of the repository that the Action is running against. If no file is found, a default one is provided within the action with "sensible defaults". A reference for the configuration options for this file can be found in the [`htmltest` documentation](https://github.com/wjdp/htmltest). An annotated version of the default file is provided below.
+
+```yaml
+CheckLinks: false # don't check URLs in <link> elements
+IgnoreDirectoryMissingTrailingSlash: true # don't fail when directory links don't have a trailing slash - techdocs generates a lot of valid links that would cause this check to fail
+IgnoreURLs:
+    - "localhost" # suppress failures of URLs containing localhost
+```
+
+If users of the action wish to provide their own `.htmltest.yml` they will likely want to include most or all of the above settings in their own file, along with any additions of their own.
+
+#### Configuring `htmltest` to ignore specific links 
+
+The `data-proofer-ignore` attribute referenced in the `IgnoreTagAttribute` value in the default `.htmltest.yml` above, file is useful for links that require authentication, or that aren't available in the environment where the action runs, or that otherwise will commonly cause validation failures. See below for an example of adding this attribute to a link. In this case, the link requires authentication, so would fail validation if it did not have the `data-proofer-ignore` attribute. Note the example below is using the [Python-Markdown syntax](https://python-markdown.github.io/extensions/attr_list/) to add an attribute to a Markdown link.
+
+ ```markdown
+ [text external link that requires authentication](https://ssbc-client.gov.bc.ca/services/AppHosting/base.htm#databackup){:data-proofer-ignore}
+ ```
 

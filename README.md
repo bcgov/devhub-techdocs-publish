@@ -31,7 +31,7 @@ The logic of `devhub-techdocs-publish` Action is implemented as a Docker image. 
 The image can also be built locally using the following command, or equivalent if you are not using `docker`. (In this case, we are tagging the image with `devhub-publisher` to make it easier to identify. 
 
 ```shell
-docker build --tag=devhub-publisher
+podman build --tag=devhub-publisher .
 ```
 
 ### Testing
@@ -72,7 +72,7 @@ So, the last part of the publishing a new version of the Action is to make a pul
 If for some reason, you need to revert `stable` to a prior version of an image, this can be done by editing the image tag referenced in `action.yml` in the `stable` branch to point to a prior version. (this can be done directly vs. a PR). Keep in mind, that if the `action.yml` or other files in the repo aren't compatible with the image version you're now pointing to (e.g. Action input parameters or mkdocs plugins have changed), this may not work on its own and other edits may be needed. In this case, it may be best to have `git` help with the rollback. (`git revert`, for e.g.)  
 
 ## License
-    Copyright 2023 Province of British Columbia
+    Copyright 2024 Province of British Columbia
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

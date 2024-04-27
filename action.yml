@@ -1,33 +1,33 @@
 name: Build and Publish TechDocs
 description: Build and Publish TechDocs to DevHub
 inputs:
-    strict_validation:
-        description: Flag to control whether link validation failures will cause workflow to exit.
-        required: false
-        default: 'false'
-    publish:
-        description: Flag to control whether generated documentation is published to shared bucket or not.
-        required: true
-        default: 'false'
-    production:
-        description: Flag to control whether generated documentation is published to production folder in shared bucket.
-        required: true
-        default: 'false'
-    bucket_name:
-        description: Name of bucket to which documentation should be published.
-        required: false
-    s3_access_key_id:
-        description: Access key id to use to authenticate with S3 endpoint.
-        required: false
-    s3_secret_access_key:
-        description: Secret access key id use to authenticate with S3 endpoint.
-        required: false
-    s3_region:
-        description: Region value to use with S3 endpoint. This is for compatibility with AWS SDK, but may not be used by all S3 implementations.
-        required: false
-    s3_endpoint:
-        description: Address of S3 endpoint
-        required: false
+  strict_validation:
+    description: Flag to control whether link validation failures will cause workflow to exit.
+    required: false
+    default: 'false'
+  publish:
+    description: Flag to control whether generated documentation is published to shared bucket or not.
+    required: true
+    default: 'false'
+  production:
+    description: Flag to control whether generated documentation is published to production folder in shared bucket.
+    required: true
+    default: 'false'
+  bucket_name:
+    description: Name of bucket to which documentation should be published.
+    required: false
+  s3_access_key_id:
+    description: Access key id to use to authenticate with S3 endpoint.
+    required: false
+  s3_secret_access_key:
+    description: Secret access key id use to authenticate with S3 endpoint.
+    required: false
+  s3_region:
+    description: Region value to use with S3 endpoint. This is for compatibility with AWS SDK, but may not be used by all S3 implementations.
+    required: false
+  s3_endpoint:
+    description: Address of S3 endpoint
+    required: false
 runs:
-    using: docker
-    image: docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.1.1
+  using: docker
+  image: docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.2.0

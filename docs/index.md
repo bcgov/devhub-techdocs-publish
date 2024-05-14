@@ -2,7 +2,7 @@
 
 This is the documentation for the DevHub TechDocs Publisher GitHub Action. The DevHub TechDocs Publisher GitHub Action makes is easy for DevHub Content Partners to implement a CI job that will publish their content to [DevHub](https://developer.gov.bc.ca).
 
-> Note: The instructions below presume you are part of a B.C. government development team and have been in touch with the B.C. government [Developer Experience Team](mailto:developer.experience@gov.bc.ca) for orientation to DevHub. The workflow below will not work until the Developer Experience has given you access to certain protected values that it uses (those in `${{ secrets... }` below). You *may* be able to make use of the action to publish to other Backstage environments, but these instructions won't cover that scenario. 
+> Note: The instructions below presume you are part of a B.C. government development team and have been in touch with the B.C. government [Developer Experience Team](mailto:developer.experience@gov.bc.ca) for orientation to DevHub. The workflow below will not work until the Developer Experience has given you access to certain protected values that it uses (those in `${{ secrets... }` below). You *may* be able to make use of the action to publish to other Backstage environments, but these instructions won't cover that scenario.
 
 ## How to use the GitHub Action
 
@@ -164,4 +164,8 @@ The `data-proofer-ignore` attribute referenced in the `IgnoreTagAttribute` value
  ```markdown
  [text external link that requires authentication](https://ssbc-client.gov.bc.ca/services/AppHosting/base.htm#databackup){:data-proofer-ignore}
  ```
+
+# License
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 

@@ -167,5 +167,5 @@ The `data-proofer-ignore` attribute referenced in the `IgnoreTagAttribute` value
 
 # License
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]
 

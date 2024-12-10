@@ -81,6 +81,23 @@ The above commands will:
 - validate the links in the generated HTML files using [`htmltest`](#link-validation-using-htmltest)
 - start a "preview" web server on [http://localhost:3000](http://localhost:3000) for you to review your content.
 
+### Windows Users
+If you are using Windows, the command provided in the instructions will not work. You have 2 options, either execute a modified command (listed below) from a PowerShell terminal, or execute the command from a Windows Subsystem for Linux (WSL) terminal.
+
+> NOTE: The site will not auto-launch in your browser. You will need to click on the link provided in the terminal output (ie. http://localhost:3000).
+
+**PowerShell Terminal Command:**
+```powershell
+docker run -it -p 3000:3000 -v ${PWD}:/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
+```
+
+**WSL Terminal Command:**
+```wls
+docker run -it -p 3000:3000 $(pwd):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
+```
+
+> NOTE: If you are executing the command from a WSL terminal, you will need to have the repository cloned into your WSL environment.
+
 ## Link validation using `htmltest`
 
 The GitHub Action has a built-in capability to check links in HTML pages that are generated from source Markdown files. This capability uses a tool called [`htmltest`](https://github.com/wjdp/htmltest). 

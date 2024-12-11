@@ -75,28 +75,22 @@ podman pull ghcr.io/bcgov/devhub-techdocs-publish
 podman run -it -p 3000:3000 -v $(pwd):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
 ```
 
+> [!NOTE]
+>
+> For Windows users:
+>
+> The above shell commands will work as-is for WLS, but if you are using PowerShell, you will need to use one of the modified commands below, depending on whether you are using `docker` or `podman`. You will also need to ensure you have cloned your content repository into your WLS environment.
+>
+> ```powershell
+> docker run -it -p 3000:3000 -v ${PWD}:/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
+> podman run -it -p 3000:3000 -v $(PWD):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
+> ```
+
 The above commands will:
 
-- generate HTML from your Markdown documents using a standard set of plugins/extensions for DevHub compatibility
-- validate the links in the generated HTML files using [`htmltest`](#link-validation-using-htmltest)
-- start a "preview" web server on [http://localhost:3000](http://localhost:3000) for you to review your content.
-
-### Windows Users
-If you are using Windows, the command provided in the instructions will not work. You have 2 options, either execute a modified command (listed below) from a PowerShell terminal, or execute the command from a Windows Subsystem for Linux (WSL) terminal.
-
-> NOTE: The site will not auto-launch in your browser. You will need to click on the link provided in the terminal output (ie. http://localhost:3000).
-
-**PowerShell Terminal Command:**
-```powershell
-docker run -it -p 3000:3000 -v ${PWD}:/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
-```
-
-**WSL Terminal Command:**
-```wls
-docker run -it -p 3000:3000 $(pwd):/github/workspace ghcr.io/bcgov/devhub-techdocs-publish preview
-```
-
-> NOTE: If you are executing the command from a WSL terminal, you will need to have the repository cloned into your WSL environment.
+- Generate HTML from your Markdown documents using a standard set of plugins/extensions for DevHub compatibility
+- Validate the links in the generated HTML files using [`htmltest`](#link-validation-using-htmltest)
+- Start a "preview" web server on [http://localhost:3000](http://localhost:3000) for you to review your content. If the site does not auto-launch in your browser, you may click the link provided in the terminal output.
 
 ## Link validation using `htmltest`
 

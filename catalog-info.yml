@@ -7,6 +7,6 @@ metadata:
         github.com/project-slug: bcgov/devhub-techdocs-publish
         backstage.io/techdocs-ref: dir:.
 spec:
-    type: documentation
+    type: library
     lifecycle: experimental
-    owner: "developer-experience"
+    owner: group:bcgov/developer-experience

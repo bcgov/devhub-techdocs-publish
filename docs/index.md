@@ -12,7 +12,7 @@ If you wish to make use of the Action to publish documentation to DevHub, you sh
 name: Build TechDocs with DevHub TechDocs Publish Action
 
 
-# You are free to alter the trigger rules within the `on:` section based on your team's workflow. As-is, the workflow will run on changes to files matching the  indicated patterns in `path`  contained in any push to the `main` branch or any pull request targeted at the `main` branch. 
+# You are free to alter the trigger rules within the `on:` section based on your team's workflow. As-is, the workflow will run on changes to files matching the indicated patterns in `path`  contained in any push to the `main` branch or any pull request targeted at the `main` branch. 
 on:
     workflow_dispatch:
     push:

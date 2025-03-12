@@ -12,9 +12,7 @@ COPY requirements.txt /requirements.txt
 RUN \
 /.virtualenvs/techdocs/bin/pip install -r /requirements.txt && \
 npm install -g @techdocs/cli@1.9.0 && \
-mkdir /mkpatcher_scripts && \
-mkdir /tmp/trivy-py-test && \
-cp -r ./virtualenvs/techdocs/* /tmp/trivy-py-test
+mkdir /mkpatcher_scripts
 
 # install `htmltest` for testing links and other things within generated HTML
 RUN \

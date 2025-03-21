@@ -30,4 +30,4 @@ inputs:
     required: false
 runs:
   using: docker
-  image: docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.2.0
+  image: docker://ghcr.io/bcgov/devhub-techdocs-publish:v0.2.1

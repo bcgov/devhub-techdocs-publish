@@ -24,11 +24,11 @@ Users of `devhub-techdocs-publish` are directed to use the `stable` version of t
 
 #### With GitHub Actions
 
-The logic of `devhub-techdocs-publish` Action is implemented as a Docker image. The Docker image is automatically built on every push to `main` using the [docker_build.yml](./github/workflows) workflow file. Once a build succeeds, the resulting image will be available in the [repo's packages list](https://github.com/bcgov/devhub-techdocs-publish/pkgs/container/devhub-techdocs-publish).
+The logic of `devhub-techdocs-publish` Action is implemented as a Docker image. The Docker image is automatically built on every push to `main` using the [docker_build.yml](./.github/workflows) workflow file. Once a build succeeds, the resulting image will be available in the [repo's packages list](https://github.com/bcgov/devhub-techdocs-publish/pkgs/container/devhub-techdocs-publish).
 
 #### Locally
 
-The image can also be built locally using the following command, or equivalent if you are not using `docker`. (In this case, we are tagging the image with `devhub-publisher` to make it easier to identify. 
+The image can also be built locally using the following command, or equivalent if you are not using `docker`. (In this case, we are tagging the image with `devhub-publisher` to make it easier to identify.) 
 
 ```shell
 podman build --tag=devhub-publisher .

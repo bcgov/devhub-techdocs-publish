@@ -60,7 +60,7 @@ jobs:
       # format to the repository Actions tab.
       # pinned to sha for 4.6.2
       - name: "Upload artifact"
-        uses: actions/upload-artifact@sha256:290722aa3281d5caf23d0acdc3dbeb3424786a1a01a9cc97e72f147225e37c38
+        uses: actions/upload-artifact@290722aa3281d5caf23d0acdc3dbeb3424786a1a01a9cc97e72f147225e37c38
         with:
           name: ossf-sarif-file
           path: results.sarif

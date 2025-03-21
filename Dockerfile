@@ -1,5 +1,5 @@
 # need -dev variant as we need a package manager at build time. this is a single stage build as we need a "mixed runtime" with both node and python environments.
-FROM cgr.dev/chainguard/node:latest-dev
+FROM cgr.dev/chainguard/node:latest-dev@sha256:30521ec874f99e7486617f364cd73b44637d9489ddefecafeda00f3128dc99bf
 
 # required at image build time to install packages using package manager
 USER root
